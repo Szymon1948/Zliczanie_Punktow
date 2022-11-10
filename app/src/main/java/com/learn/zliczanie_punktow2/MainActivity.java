@@ -1,6 +1,7 @@
 package com.learn.zliczanie_punktow2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -23,41 +24,44 @@ public class MainActivity extends AppCompatActivity {
         punktyViewModel = new ViewModelProvider(this)
                 .get(PunktyViewModel.class);
 
-    binding.textView
-            .setText(Integer.toString(punktyViewModel.getPunkty()));
+        punktyViewModel.getPunkty().observe(this,
+                new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.textView.setText(integer.toString());
+            }
+        });
+
         binding.button4.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         punktyViewModel.dodajPunkty(1);
-                        binding.textView
-                                .setText(Integer.toString(punktyViewModel.getPunkty()));
+
                     }
                 }
         );
-        binding.textView
-                .setText(Integer.toString(punktyViewModel.getPunkty()));
+
         binding.button5.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         punktyViewModel.dodajPunkty(2);
-                        binding.textView
-                                .setText(Integer.toString(punktyViewModel.getPunkty()));
+
                     }
                 }
         );
-        binding.textView
-                .setText(Integer.toString(punktyViewModel.getPunkty()));
+
         binding.button6.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         punktyViewModel.dodajPunkty(3);
-                        binding.textView
-                                .setText(Integer.toString(punktyViewModel.getPunkty()));
+
                     }
                 }
         );
     }
 }
+//https://codelabs.developers.google.com/?product=android&text=java
+//https://developer.android.com/jetpack/androidx/explorer
