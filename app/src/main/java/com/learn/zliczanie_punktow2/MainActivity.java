@@ -10,7 +10,7 @@ import com.learn.zliczanie_punktow2.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private Integer punkty=0;
+
     private  PunktyViewModel punktyViewModel;
 
     @Override
@@ -23,12 +23,39 @@ public class MainActivity extends AppCompatActivity {
         punktyViewModel = new ViewModelProvider(this)
                 .get(PunktyViewModel.class);
 
+    binding.textView
+            .setText(Integer.toString(punktyViewModel.getPunkty()));
         binding.button4.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        punkty++;
-                        binding.textView.setText(punkty.toString());
+                        punktyViewModel.dodajPunkty(1);
+                        binding.textView
+                                .setText(Integer.toString(punktyViewModel.getPunkty()));
+                    }
+                }
+        );
+        binding.textView
+                .setText(Integer.toString(punktyViewModel.getPunkty()));
+        binding.button5.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        punktyViewModel.dodajPunkty(2);
+                        binding.textView
+                                .setText(Integer.toString(punktyViewModel.getPunkty()));
+                    }
+                }
+        );
+        binding.textView
+                .setText(Integer.toString(punktyViewModel.getPunkty()));
+        binding.button6.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        punktyViewModel.dodajPunkty(3);
+                        binding.textView
+                                .setText(Integer.toString(punktyViewModel.getPunkty()));
                     }
                 }
         );
